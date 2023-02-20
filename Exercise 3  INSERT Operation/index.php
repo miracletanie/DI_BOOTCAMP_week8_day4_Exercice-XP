@@ -1,22 +1,8 @@
 <?php 
 
-// Créez une connexion de base de données au serveur PostgreSQL 
 $pdo = require("connect.php");
 
 
-// // Créez une requête SQL
-// $sql = "CREATE TABLE COMPANY (
-//         ID      INT     PRIMARY KEY     NOT NULL,
-//         NAME    TEXT    NOT NULL,
-//         AGE     INT     NOT NULL,
-//         ADDRESS CHAR(50),
-//         SALARY  REAL
-//     )";
-
-// // Exécuter une requête pour créer la table
-// $statement = $pdo->prepare($sql);
-
-// $statement->execute();
 
 
 $datas = [
@@ -27,14 +13,12 @@ $datas = [
 
 ];
     
-// Créez une requête SQL pour l'insertion.
 $sql = 'INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
         VALUES(:id,:name,:age,:address,:salary)';
 
 $statement = $pdo->prepare($sql);
 
 
-// Exécuter la requête à insérer dans la table
 foreach($datas as $data) {
          $statement->execute([
                 ":id" => $data["ID"],
@@ -46,7 +30,6 @@ foreach($datas as $data) {
 }
 
 
-// Fermez la connexion à la base de données
 $pdo = null;
 
 ?>
